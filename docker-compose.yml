@@ -15,12 +15,24 @@ services:
       - POSTGRES_DB=postgres
     restart: unless-stopped
     networks:
-      postgres-network:
+      data-network:
         aliases:
           - postgres
+  redis:
+    image: redis:5.0.3
+    container_name: redis
+    expose:
+      - 6379
+    ports:
+      - 6379:6379
+    restart: unless-stopped
+    networks:
+      data-network:
+        aliases:
+          - redis
 
 volumes:
   postgres-data:
   
 networks:
-  postgres-network:
+  data-network:

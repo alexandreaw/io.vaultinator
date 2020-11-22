@@ -10,7 +10,7 @@ class AddPasswordManagerAdapter(
         private val encryptService: EncryptService
 ) : AddPasswordManagerUseCase {
 
-    override fun add(masterPassword: String, passwordManager: PasswordManager): String {
+    override fun add(masterPassword: String, passwordManager: PasswordManager) : String {
         val encryptedPasswordManager = encryptService.encrypt(masterPassword, passwordManager)
 
         return passwordManagerRepository.add(encryptedPasswordManager)

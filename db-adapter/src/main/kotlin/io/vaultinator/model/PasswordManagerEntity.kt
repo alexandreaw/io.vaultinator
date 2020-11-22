@@ -1,13 +1,12 @@
 package io.vaultinator.model
 
 import org.hibernate.annotations.Type
-
-import java.util.*
+import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
+import javax.persistence.Id
 import javax.persistence.Table
-import javax.persistence.Id;
 
 @Entity
 @Table(name="password_manager")

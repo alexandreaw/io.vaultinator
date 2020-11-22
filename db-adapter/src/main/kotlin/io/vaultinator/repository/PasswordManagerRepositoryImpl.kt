@@ -15,4 +15,7 @@ class PasswordManagerRepositoryImpl(
         jpa.save(passwordManager.toEntity())
                 .toDomain()
                 .id
+
+    override fun getAll(): List<PasswordManager> =
+        jpa.findAll().map { it.toDomain() }
 }

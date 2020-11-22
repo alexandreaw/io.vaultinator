@@ -3,6 +3,7 @@ package io.vaultinator.port.output.repository
 import io.vaultinator.model.PasswordManager
 
 interface PasswordManagerRepository {
-    abstract fun add(passwordManager: PasswordManager) : String
+    fun add(passwordManager: PasswordManager) : String
+    fun getAll() : List<PasswordManager>
 
 }
