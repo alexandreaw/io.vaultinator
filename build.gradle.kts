@@ -20,6 +20,7 @@ plugins {
     kotlin("kapt") version "1.3.50"
     id("com.linecorp.build-recipe-plugin") version "1.0.1"
     id("com.linecorp.recursive-git-log-plugin") version "1.0.1"
+    jacoco
 }
 
 allprojects {
@@ -30,6 +31,7 @@ allprojects {
 
 configureByTypePrefix("kotlin") {
     apply(plugin = "kotlin")
+    apply(plugin = "jacoco")
 
     configure<JavaPluginConvention> {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -46,6 +48,33 @@ configureByTypePrefix("kotlin") {
         useJUnitPlatform()
         testLogging {
             events("passed", "skipped", "failed")
+        }
+        finalizedBy(tasks.jacocoTestReport)
+    }
+
+    tasks.jacocoTestReport {
+        dependsOn(tasks.test)
+    }
+
+    tasks.jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = "0.85".toBigDecimal()
+                }
+            }
+
+            rule {
+                enabled = true
+                element = "CLASS"
+                includes = listOf("io.vaultinator.*")
+
+                limit {
+                    counter = "LINE"
+                    value = "TOTALCOUNT"
+                    maximum = "0.3".toBigDecimal()
+                }
+            }
         }
     }
 
