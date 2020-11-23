@@ -4,7 +4,7 @@ import io.vaultinator.model.PasswordManager
 import io.vaultinator.port.input.GetAllPasswordManagerUseCase
 import io.vaultinator.port.output.repository.PasswordManagerRepository
 
-class GetAllPassswordManagerAdapter(
+class GetAllPasswordManagerAdapter(
         private val passwordManagerRepository: PasswordManagerRepository
 ) : GetAllPasswordManagerUseCase {
 
